@@ -75,9 +75,7 @@ h1, h2, h3, h4 { font-family: var(--font-display), Georgia, serif; font-weight: 
   background: color-mix(in srgb, var(--lf-bg) 90%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border-bottom: 1.5px solid var(--lf-line);
 }
-.lf-nav-inner { width: 100%; max-width: none; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px; }
-.lf-college-brand { justify-self: center; display: flex; align-items: center; max-width: 100%; }
-.lf-college-banner { display: block; width: clamp(100px, 10vw, 140px); height: auto; max-height: 56px; object-fit: contain; background: #fff; border-radius: 4px; }
+.lf-nav-inner { width: 100%; max-width: none; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 16px; }
 .lf-logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; text-decoration: none; font-family: var(--font-display), Georgia, serif; font-weight: 700; font-size: 1.2rem; white-space: nowrap; }
 .lf-logo svg { display: block; transition: transform 0.35s var(--lf-ease); }
 .lf-logo:hover svg { transform: rotate(-12deg) translateY(-2px); }
@@ -90,8 +88,7 @@ h1, h2, h3, h4 { font-family: var(--font-display), Georgia, serif; font-weight: 
 @media (max-width: 440px) { .lf-logo-text { display: none; } }
 @media (max-width: 520px) {
   .lf-nav { padding: 10px 14px; }
-  .lf-nav-inner { gap: 8px; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
-  .lf-college-banner { width: clamp(64px, 18vw, 94px); max-height: 42px; }
+  .lf-nav-inner { gap: 8px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .lf-links { gap: 2px; flex-wrap: wrap; }
   .lf-link { padding: 7px 8px; font-size: 14px; }
   .lf-btn-sm { padding: 7px 10px; font-size: 13px; }

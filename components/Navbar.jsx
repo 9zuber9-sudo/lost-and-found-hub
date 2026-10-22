@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
@@ -59,9 +58,6 @@ export default function Navbar() {
           </svg>
           <span className="lf-logo-text">Lost &amp; Found</span>
         </Link>
-        <a className="lf-college-brand" href="https://www.srmuniversity.ac.in/" target="_blank" rel="noreferrer" aria-label="SRM University Delhi-NCR, Sonepat">
-          <Image src="/1ERPcollege_logo.png" width={2300} height={1000} alt="SRM University Delhi-NCR, Sonepat" className="lf-college-banner" priority />
-        </a>
         <div className="lf-links">
           <Link href="/items" className="lf-link">Browse</Link>
           <Link href="/items/new" className="lf-link lf-hide-sm">Post something</Link>
