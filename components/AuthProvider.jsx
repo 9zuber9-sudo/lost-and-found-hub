@@ -1,12 +1,14 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 
 const AuthContext = createContext({ user: null, loading: true });
 
 // Keep the signed-in user available to client components throughout the app.
 export default function AuthProvider({ children }) {
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -27,8 +29,9 @@ export default function AuthProvider({ children }) {
     });
 
     // Update the page after sign-in or sign-out.
-    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
       if (mounted) {
+        if (event === "PASSWORD_RECOVERY") router.replace("/reset-password");
         setUser(session?.user ?? null);
         setLoading(false);
       }
@@ -38,7 +41,7 @@ export default function AuthProvider({ children }) {
       mounted = false;
       data.subscription.unsubscribe();
     };
-  }, []);
+  }, [router]);
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
