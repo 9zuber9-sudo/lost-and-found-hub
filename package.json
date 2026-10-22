@@ -1,0 +1,24 @@
+{
+  "name": "campus-lost-and-found",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
+    "framer-motion": "^12.23.0",
+    "next": "^15.5.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.5.28",
+    "tailwindcss": "^4.1.13"
+  }
+}

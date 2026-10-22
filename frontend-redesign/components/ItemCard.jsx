@@ -1,0 +1,49 @@
+"use client";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { emojiFor } from "../lib/categories";
+import { timeAgo } from "../lib/format";
+
+// One item in the grid. `item` = a row from the `items` table, `index` = position (for the staggered entrance)
+export default function ItemCard({ item, index = 0 }) {
+  const reduce = useReducedMotion();
+  const returned = item.status === "returned";
+
+  return (
+    <motion.div
+      className="lf-item-wrap"
+      layout={!reduce}
+      initial={reduce ? false : { opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={reduce ? undefined : { opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.5, delay: Math.min(index, 8) * 0.06, ease: [0.2, 0.8, 0.2, 1] }}
+      whileHover={reduce ? undefined : { y: -6 }}
+    >
+      {returned && (
+        <span className="lf-returned">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M4 12l5 5L20 6" />
+          </svg>
+          Returned
+        </span>
+      )}
+      <Link href={`/items/${item.id}`} className="lf-card lf-item">
+        <div className="lf-item-media">
+          {item.image_url ? (
+            <img src={item.image_url} alt={`${item.title} (${item.type} item)`} loading="lazy" />
+          ) : (
+            <span aria-hidden="true">{emojiFor(item.category)}</span>
+          )}
+        </div>
+        <span className={`lf-tag ${item.type === "lost" ? "lf-tag-lost" : "lf-tag-found"}`}>
+          {item.type === "lost" ? "Lost" : "Found"}
+        </span>
+        <h3>{item.title}</h3>
+        <div className="lf-meta">
+          <span>📍 {item.location || "Unknown place"}</span>
+          <span>· {timeAgo(item.created_at)}</span>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
