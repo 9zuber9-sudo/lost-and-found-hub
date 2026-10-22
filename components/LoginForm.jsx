@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/AuthProvider";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
@@ -76,6 +77,10 @@ export default function LoginForm() {
         <label className="lf-label" htmlFor="password">Password</label>
         <input id="password" className="lf-input" autoComplete={mode === "signup" ? "new-password" : "current-password"} disabled={!isSupabaseConfigured || busy} minLength={6} onChange={(event) => setPassword(event.target.value)} required type="password" value={password} />
       </div>
+
+      {mode === "signin" && (
+        <Link className="lf-link" href="/forgot-password">Forgot password?</Link>
+      )}
 
       {error && <p className="lf-error" role="alert">{error}</p>}
       {message && <p className="lf-note" role="status">{message}</p>}
