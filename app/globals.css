@@ -77,7 +77,7 @@ h1, h2, h3, h4 { font-family: var(--font-display), Georgia, serif; font-weight: 
 }
 .lf-nav-inner { width: 100%; max-width: none; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px; }
 .lf-college-brand { justify-self: center; display: flex; align-items: center; max-width: 100%; }
-.lf-college-banner { display: block; width: clamp(190px, 25vw, 300px); height: auto; max-height: 96px; object-fit: contain; background: #fff; border-radius: 4px; }
+.lf-college-banner { display: block; width: clamp(100px, 11vw, 150px); height: auto; max-height: 64px; object-fit: contain; background: #fff; border-radius: 4px; }
 .lf-logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; text-decoration: none; font-family: var(--font-display), Georgia, serif; font-weight: 700; font-size: 1.2rem; white-space: nowrap; }
 .lf-logo svg { display: block; transition: transform 0.35s var(--lf-ease); }
 .lf-logo:hover svg { transform: rotate(-12deg) translateY(-2px); }
