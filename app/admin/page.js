@@ -46,7 +46,7 @@ export default function AdminPage() {
     setError("");
     const { data, error: loadError } = await supabase
       .from("items")
-      .select("id,user_id,type,title,description,category,location,date_happened,image_url,created_at")
+      .select("id,user_id,type,title,description,category,location,date_happened,image_url,reward_details,created_at")
       .eq("status", "pending")
       .order("created_at", { ascending: true });
     if (loadError) setError(loadError.message);
@@ -143,6 +143,7 @@ export default function AdminPage() {
               <h2>{item.title}</h2>
               <p className="lf-meta">{item.category} · {item.location}</p>
               <p>{item.description || "No description provided."}</p>
+              {item.reward_details && <p className="lf-help">Reward offered: {item.reward_details}</p>}
               <p className="lf-help">Submitted by {item.user_id}</p>
               <div className="lf-modal-actions">
                 <button className="lf-btn lf-btn-primary" disabled={busyId === item.id} onClick={() => approve(item.id)} type="button">

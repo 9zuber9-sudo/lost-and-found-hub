@@ -28,7 +28,7 @@ function Browser() {
       }
       let query = supabase
         .from("items")
-        .select("id,type,title,location,category,image_url,status,created_at")
+        .select("id,type,title,location,category,image_url,reward_details,status,created_at")
         .in("status", filters.status === "all" ? ["open", "returned"] : [filters.status])
         .order("created_at", { ascending: false });
       if (filters.type !== "all") query = query.eq("type", filters.type);

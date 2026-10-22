@@ -40,7 +40,7 @@ export default function ItemDetailPage() {
       setError("");
       const { data, error: itemError } = await supabase
         .from("items")
-        .select("id,user_id,type,title,description,category,location,date_happened,image_url,status,created_at")
+        .select("id,user_id,type,title,description,category,location,date_happened,image_url,reward_details,status,created_at")
         .eq("id", id)
         .maybeSingle();
 
@@ -117,6 +117,12 @@ export default function ItemDetailPage() {
             <dt>Status</dt><dd>{item.status}</dd>
           </dl>
           <p>{item.description}</p>
+          {item.type === "lost" && item.reward_details && (
+            <div className="lf-reward lf-reward-detail">
+              <span aria-hidden="true">🎁</span>
+              <span><b>Reward offered</b><br />{item.reward_details}</span>
+            </div>
+          )}
           {item.status === "pending" ? (
             isOwner && <div className="lf-note"><b>Waiting for review</b>This post will appear on the public board after an admin approves it.</div>
           ) : user ? (

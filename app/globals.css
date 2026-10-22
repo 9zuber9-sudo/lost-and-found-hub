@@ -153,6 +153,8 @@ h1, h2, h3, h4 { font-family: var(--font-display), Georgia, serif; font-weight: 
 .lf-tag { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; padding: 2px 9px; border-radius: 6px; color: var(--lf-on-color); }
 .lf-tag-lost { background: var(--color-stop-3); }
 .lf-tag-found { background: var(--color-stop-1); }
+.lf-reward { display: inline-flex; align-items: flex-start; gap: 6px; width: fit-content; max-width: 100%; padding: 5px 9px; border: 1px solid color-mix(in srgb, var(--color-stop-2) 55%, var(--lf-line)); border-radius: 8px; background: color-mix(in srgb, var(--color-stop-2) 18%, var(--lf-surface)); color: var(--lf-ink); font-size: 0.88rem; line-height: 1.35; overflow-wrap: anywhere; }
+.lf-reward-detail { width: 100%; box-sizing: border-box; }
 .lf-returned {
   position: absolute; right: 8px; top: -8px; z-index: 3; display: flex; gap: 6px; align-items: center;
   padding: 4px 10px; border: 2px solid var(--lf-on-color); border-radius: 6px; background: var(--color-stop-1); color: var(--lf-on-color);

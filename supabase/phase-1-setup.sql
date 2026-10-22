@@ -11,6 +11,7 @@ create table if not exists public.items (
   category text,
   location text,
   date_happened date,
+  reward_details text check (reward_details is null or char_length(btrim(reward_details)) between 1 and 120),
   image_url text,
   contact_info text,
   hidden_detail text,
@@ -48,15 +49,15 @@ using (user_id = (select auth.uid()));
 revoke all on table public.items from public, anon, authenticated;
 grant select (
   id, user_id, type, title, description, category, location,
-  date_happened, image_url, status, created_at
+  date_happened, image_url, reward_details, status, created_at
 ) on public.items to anon, authenticated;
 grant insert (
   type, title, description, category, location, date_happened,
-  image_url, contact_info, hidden_detail, status
+  image_url, reward_details, contact_info, hidden_detail, status
 ) on public.items to authenticated;
 grant update (
   type, title, description, category, location, date_happened,
-  image_url, contact_info, hidden_detail, status
+  image_url, reward_details, contact_info, hidden_detail, status
 ) on public.items to authenticated;
 grant delete on public.items to authenticated;
 

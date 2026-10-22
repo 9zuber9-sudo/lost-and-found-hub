@@ -22,6 +22,7 @@ export default function ItemForm({ initialType = "lost" }) {
   const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
+  const [rewardDetails, setRewardDetails] = useState("");
   const [contact, setContact] = useState("");
   const [hiddenDetail, setHiddenDetail] = useState("");
   const [photo, setPhoto] = useState(null);
@@ -100,6 +101,7 @@ export default function ItemForm({ initialType = "lost" }) {
           category,
           location: location.trim(),
           date_happened: date,
+          reward_details: type === "lost" ? rewardDetails.trim() || null : null,
           image_url: imageUrl,
           contact_info: contact.trim(),
           hidden_detail: type === "found" ? hiddenDetail.trim() || null : null,
@@ -159,6 +161,14 @@ export default function ItemForm({ initialType = "lost" }) {
           <input className="lf-input" id="date" onChange={(event) => setDate(event.target.value)} required type="date" value={date} />
           {errors.date && <p className="lf-error">{errors.date}</p>}
         </div>
+
+        {type === "lost" && (
+          <div className="lf-field">
+            <label className="lf-label" htmlFor="reward-details">Reward (optional)</label>
+            <input className="lf-input" id="reward-details" maxLength={120} onChange={(event) => setRewardDetails(event.target.value)} placeholder="e.g. ₹200 or a thank-you treat" value={rewardDetails} />
+            <p className="lf-help">You and the finder can agree on the details directly. Any payment happens outside the app.</p>
+          </div>
+        )}
 
         <div className="lf-field">
           <label className="lf-label" htmlFor="contact">Contact details</label>

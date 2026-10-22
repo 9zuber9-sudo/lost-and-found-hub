@@ -20,7 +20,7 @@ export default function LatestItems() {
       if (!supabase) return setLoading(false);
       const { data } = await supabase
         .from("items")
-        .select("id,type,title,location,category,image_url,status,created_at")
+        .select("id,type,title,location,category,image_url,reward_details,status,created_at")
         .in("status", ["open", "returned"])
         .order("created_at", { ascending: false })
         .limit(8);

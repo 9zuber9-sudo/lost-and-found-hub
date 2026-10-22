@@ -39,6 +39,9 @@ export default function ItemCard({ item, index = 0 }) {
         <span className={`lf-tag ${item.type === "lost" ? "lf-tag-lost" : "lf-tag-found"}`}>
           {item.type === "lost" ? "Lost" : "Found"}
         </span>
+        {item.type === "lost" && item.reward_details && (
+          <span className="lf-reward">🎁 Reward: {item.reward_details}</span>
+        )}
         <h3>{item.title}</h3>
         <div className="lf-meta">
           <span>{item.location || "Unknown place"}</span>
