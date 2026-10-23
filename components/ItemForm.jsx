@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { useAuth } from "@/components/AuthProvider";
 import Toast from "@/components/Toast";
 
-const MAX_PHOTO_SIZE = 3 * 1024 * 1024;
+const MAX_PHOTO_SIZE = 7 * 1024 * 1024;
 const PHOTO_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
 export default function ItemForm({ initialType = "lost" }) {
@@ -51,7 +51,7 @@ export default function ItemForm({ initialType = "lost" }) {
       return;
     }
     if (selected.size > MAX_PHOTO_SIZE) {
-      setErrors((current) => ({ ...current, photo: "Choose an image smaller than 3 MB." }));
+      setErrors((current) => ({ ...current, photo: "This image is over the 7 MB limit. Choose a smaller image." }));
       setPhoto(null);
       setPreviewUrl("");
       return;
@@ -178,7 +178,7 @@ export default function ItemForm({ initialType = "lost" }) {
         </div>
 
         <label className="lf-drop">
-          <span>Tap to add a photo (images only, max 3 MB)</span>
+          <span>Tap to add a photo (images only)</span>
           <input accept="image/*" aria-label="Choose an item photo" onChange={onFile} type="file" />
           {photo && <span className="lf-help">{photo.name}</span>}
           {previewUrl && <Image className="lf-preview" src={previewUrl} alt="Preview of the selected item" width={800} height={600} unoptimized />}

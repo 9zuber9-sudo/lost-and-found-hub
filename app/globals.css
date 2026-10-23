@@ -85,15 +85,22 @@ h1, h2, h3, h4 { font-family: var(--font-display), Georgia, serif; font-weight: 
 .lf-user { font-size: 12px; color: var(--lf-muted); max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lf-hide-sm { display: none; }
 @media (min-width: 720px) { .lf-hide-sm { display: inline-block; } }
-@media (max-width: 440px) { .lf-logo-text { display: none; } }
-@media (max-width: 520px) {
-  .lf-nav { padding: 10px 14px; }
-  .lf-nav-inner { gap: 8px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .lf-links { gap: 2px; flex-wrap: wrap; }
-  .lf-link { padding: 7px 8px; font-size: 14px; }
-  .lf-btn-sm { padding: 7px 10px; font-size: 13px; }
+@media (max-width: 720px) {
+  .lf-nav { padding: 8px 12px; }
+  .lf-nav-inner { display: flex; justify-content: space-between; gap: 8px; }
+  .lf-logo { gap: 6px; font-size: 1rem; }
+  .lf-logo svg { width: 23px; height: 23px; flex: 0 0 auto; }
+  .lf-links { flex: 0 1 auto; gap: 4px; flex-wrap: nowrap; }
+  .lf-link { padding: 6px 6px; font-size: 12px; white-space: nowrap; }
+  .lf-btn-sm { padding: 6px 8px; font-size: 12px; white-space: nowrap; }
+  .lf-links .lf-icon { width: 32px; height: 32px; flex: 0 0 32px; font-size: 16px; }
 }
-
+@media (max-width: 380px) {
+  .lf-logo-text { display: none; }
+  .lf-nav { padding-inline: 9px; }
+  .lf-links { gap: 2px; }
+  .lf-link { padding-inline: 5px; }
+}
 /* ---------- buttons ---------- */
 .lf-icon { width: 38px; height: 38px; border-radius: 10px; border: 0; background: transparent; color: var(--lf-ink); font-size: 18px; cursor: pointer; transition: background 0.2s, transform 0.3s; }
 .lf-icon:hover { background: var(--lf-line); transform: rotate(18deg); }
@@ -276,4 +283,66 @@ textarea.lf-input { min-height: 110px; resize: vertical; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .lf-mark { background-size: 100% 100%; }
+}
+
+/* ---------- admin post management ---------- */
+.lf-admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px; padding-top: 24px; align-items: stretch; }
+.lf-admin-card { min-width: 0; padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+.lf-admin-image-wrap, .lf-admin-image-placeholder { width: 100%; height: clamp(160px, 19vw, 220px); border-radius: 11px; overflow: hidden; background: color-mix(in srgb, var(--lf-line) 68%, var(--lf-surface)); }
+.lf-admin-image { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lf-admin-image-placeholder { display: grid; place-items: center; color: var(--lf-muted); font-family: var(--font-display), Georgia, serif; font-size: 4rem; }
+.lf-admin-card-body { display: grid; align-content: start; gap: 8px; min-width: 0; }
+.lf-admin-card-topline { display: flex; align-items: center; gap: 9px; }
+.lf-admin-status { color: var(--lf-muted); font-size: 0.8rem; text-transform: capitalize; }
+.lf-admin-status-pending { color: color-mix(in srgb, var(--color-stop-3) 75%, var(--lf-ink)); font-weight: 700; }
+.lf-admin-status-open { color: var(--color-stop-1); font-weight: 700; }
+.lf-admin-status-returned { color: var(--lf-muted); font-weight: 700; }
+.lf-admin-card h2 { margin: 0; font-size: clamp(1.25rem, 2vw, 1.55rem); line-height: 1.2; overflow-wrap: anywhere; }
+.lf-admin-meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; color: var(--lf-muted); font-size: 0.9rem; }
+.lf-admin-description { margin: 0; line-height: 1.45; overflow-wrap: anywhere; }
+.lf-admin-submitter { margin: 0; color: var(--lf-muted); font-size: 0.8rem; }
+.lf-admin-submitter span { display: block; margin-top: 3px; overflow-wrap: anywhere; font-family: ui-monospace, monospace; font-size: 0.75rem; }
+.lf-admin-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 2px; }
+.lf-admin-actions .lf-btn { flex: 1 1 130px; }
+@media (max-width: 600px) {
+  .lf-admin-grid { grid-template-columns: 1fr; gap: 14px; padding-top: 18px; }
+  .lf-admin-card { padding: 12px; gap: 12px; }
+  .lf-admin-image-wrap, .lf-admin-image-placeholder { height: 200px; }
+  .lf-admin-actions .lf-btn { flex-basis: 100%; }
+}
+.lf-admin-section { margin-top: 34px; }
+.lf-admin-section + .lf-admin-section { margin-top: 42px; padding-top: 30px; border-top: 1px solid var(--lf-line); }
+.lf-admin-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; }
+.lf-admin-section-heading .lf-hand { margin-bottom: 4px; font-size: 1.15rem; }
+.lf-admin-section-heading h2 { display: flex; align-items: center; gap: 10px; margin: 0; font-size: clamp(1.55rem, 3vw, 2rem); }
+.lf-admin-section-heading h2 span { display: inline-grid; place-items: center; min-width: 30px; height: 30px; padding: 0 8px; border-radius: 999px; background: var(--lf-line); color: var(--lf-muted); font: 700 0.9rem var(--font-body), system-ui, sans-serif; }
+.lf-admin-section:first-of-type .lf-admin-section-heading h2 span { background: color-mix(in srgb, var(--color-stop-2) 35%, var(--lf-surface)); color: var(--lf-ink); }
+.lf-admin-section-heading > p { max-width: 23rem; margin: 0 0 4px; color: var(--lf-muted); text-align: right; font-size: 0.92rem; }
+.lf-admin-empty { margin-top: 16px; padding: 25px; }
+.lf-admin-empty h3 { margin: 0; font-size: 1.25rem; }
+.lf-admin-empty p { margin: 0; color: var(--lf-muted); }
+.lf-admin-card h3 { margin: 0; font-size: clamp(1.25rem, 2vw, 1.55rem); line-height: 1.2; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .lf-admin-section { margin-top: 28px; }
+  .lf-admin-section + .lf-admin-section { margin-top: 32px; padding-top: 24px; }
+  .lf-admin-section-heading { align-items: start; flex-direction: column; gap: 5px; }
+  .lf-admin-section-heading > p { text-align: left; }
+}
+
+/* Admin status tabs and a single vertical post list */
+.lf-admin-tabs { display: flex; gap: 10px; margin: 26px 0 22px; padding-bottom: 12px; border-bottom: 1px solid var(--lf-line); }
+.lf-admin-tab { display: inline-flex; align-items: center; gap: 9px; padding: 10px 18px; border: 1.5px solid var(--lf-line); border-radius: 11px; background: var(--lf-surface); color: var(--lf-ink); font: inherit; font-weight: 700; cursor: pointer; transition: background 0.18s, border-color 0.18s, transform 0.18s; }
+.lf-admin-tab:hover { transform: translateY(-1px); border-color: var(--lf-ink); }
+.lf-admin-tab[aria-selected="true"] { border-color: var(--lf-ink); background: var(--color-stop-2); color: var(--lf-on-color); }
+.lf-admin-tab span { display: grid; place-items: center; min-width: 23px; height: 23px; padding: 0 6px; border-radius: 999px; background: color-mix(in srgb, var(--lf-ink) 12%, transparent); font-size: 0.8rem; }
+.lf-admin-tabpanel { max-width: 850px; }
+.lf-admin-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 18px; }
+.lf-admin-list .lf-admin-card { display: grid; grid-template-columns: minmax(180px, 250px) minmax(0, 1fr); align-items: start; gap: 18px; }
+.lf-admin-list .lf-admin-image-wrap, .lf-admin-list .lf-admin-image-placeholder { height: 180px; }
+.lf-admin-list .lf-admin-actions { grid-column: 2; margin-top: 0; }
+@media (max-width: 600px) {
+  .lf-admin-tabs { margin-top: 20px; }
+  .lf-admin-list .lf-admin-card { display: flex; }
+  .lf-admin-list .lf-admin-image-wrap, .lf-admin-list .lf-admin-image-placeholder { height: 200px; }
+  .lf-admin-list .lf-admin-actions { width: 100%; }
 }

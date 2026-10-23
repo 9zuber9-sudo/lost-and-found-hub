@@ -87,10 +87,10 @@ $$;
 revoke all on function public.get_my_item_hidden_detail(uuid) from public, anon;
 grant execute on function public.get_my_item_hidden_detail(uuid) to authenticated;
 
--- Create a public image bucket, limited to 3 MB and common image formats.
+-- Create a public image bucket, limited to 7 MB and common image formats.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values (
-  'item-images', 'item-images', true, 3145728,
+  'item-images', 'item-images', true, 7340032,
   array['image/jpeg', 'image/png', 'image/webp', 'image/gif']
 )
 on conflict (id) do update set
